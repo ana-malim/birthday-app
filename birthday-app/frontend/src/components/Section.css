@@ -1,0 +1,72 @@
+  .section-container {
+    background: url('birthday-background.jpg') center center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+  }
+  
+  .section-container > h1 {
+    color: #fff;
+    font-size: 70px;
+    margin-top: -100px;
+    margin-right: 600px;
+    text-align: center;
+  }
+  
+  .section-container > p {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 28px;
+    margin-right: 600px;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .section-btns {
+    margin-top: 32px;
+    margin-left: 150px;
+  }
+  
+  .section-btns .btn {
+    margin: 6px;
+  }
+  
+  @media screen and (max-width: 960px) {
+    .section-container > h1 {
+      font-size: 70px;
+      margin-top: -150px;
+    }
+    .section-container > p {
+      font-size: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .section-container > h1 {
+      font-size: 40px;
+      margin-top: -100px;
+    }
+  
+    .section-container > p {
+      font-size: 14px;
+    }
+
+    .section-btns {
+      margin-top: 32px;
+      margin-left: 300px;
+    }
+  
+    .btn-mobile {
+      display: block;
+      text-decoration: none;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }

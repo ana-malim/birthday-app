@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.home {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 3rem;
+}
+
+.sign-up,
+.sign-in {
+  display: grid;
+  flex-direction: column;
+  background-image: url('./assets/images/birthday-img-7.jpg');
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+  height: 100vh;
+  width: 100%;  
+  align-items: center;
+  object-fit: contain;
+}
+
+.sign-up label,
+.sign-in label {
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+  text-align:right;  
+  margin-right: 10px;
+}
+
+.sign-up input,
+.sign-in input {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  text-align: left;
+}
+
+.sign-in > h1 {
+  color: rgb(255, 255, 255);
+  font-size: 70px;
+  text-align: center;
+  margin-top: -100px;
+  margin-bottom: -200px;
+}
+
+.sign-up > h1 {
+  color: rgb(255, 255, 255);
+  font-size: 70px;
+  text-align: center;
+  margin-top: -100px;
+  margin-bottom: -200px;
+}
+
+.sign-up > p {
+color: rgb(255, 255, 255);
+font-size: 20px;
+text-align: center;
+}
+
+.sign-in > p {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  text-align: center;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background:  rgb(21, 88, 133);
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+  width: 250px;
+  margin-left: 10px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+    margin-bottom: -300px;
+}
