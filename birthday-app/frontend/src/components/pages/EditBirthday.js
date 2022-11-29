@@ -130,7 +130,7 @@ export default function EditBirthday() {
           ) : (
             <section className="form">
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Register new birthday record</h1>
+            <h1>Edit birthday record:</h1>
             <form onSubmit={handleSubmit}>
             <div>
               <div>
