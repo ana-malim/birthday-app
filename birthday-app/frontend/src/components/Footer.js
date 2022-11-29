@@ -21,7 +21,7 @@ function Footer() {
             <h2>Social Media</h2>
             <a href='https://www.instagram.com/namalimpensa/?hl=en'>Instagram <i className='fab fa-instagram'/></a>
             <a href='https://www.linkedin.com/in/ana-malimpensa'>LinkedIn <i className='fab fa-linkedin' /></a>
-            <a href='https://github.com/ana-malim'>Github <i className="fab fa-github"/></a>
+            <a href='https://github.com/ana-malim/birthday-app'>Github <i className="fab fa-github"/></a>
           </div>
         </div>
       </div>
