@@ -27,7 +27,7 @@ function CardItem(props) {
 
   return (
     <>
-      <li className='cards__item'>
+      <div className='cards__item'>
           <figure className='cards__item__pic-wrap'>
             <img
               className='cards__item__img'
@@ -54,7 +54,7 @@ function CardItem(props) {
                       handleDelete(props._id)
                     }}}>Delete</button>
           </div>
-      </li>
+      </div>
     </>
   );
 }
