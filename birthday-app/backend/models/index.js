@@ -13,5 +13,3 @@ db.birthday = require("./birthday.model.js");
 db.user = require("./user.model.js");
 
 module.exports = db;
-
-// TODO: create schema

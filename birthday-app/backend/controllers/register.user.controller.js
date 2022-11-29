@@ -2,7 +2,7 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 
 exports.register_new_user = async (req, res) => {
-    console.log(`Username passad from client to server ${req.username}`)
+    
     const { username, userEmail, password } = req.body;
     if (!username || !userEmail || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
 

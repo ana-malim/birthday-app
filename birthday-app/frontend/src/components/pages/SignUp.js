@@ -1,22 +1,19 @@
 import React from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';import { Button } from '../Button';
+
 import '../../App.css';
-import { Button } from '../Button';
-import {
-  useState,
-  useRef,
-  useEffect
-} from 'react';
+import '../Form.css';
 
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from '../../api/axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{2,14}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
 
 export default function SignUp() {
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -63,7 +60,6 @@ export default function SignUp() {
 
   async function registerUser () {
 
-    // the request reaches the correct api in the backend but it does't send a body
    const response = await fetch('/signup', {method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     //withCredentials: true,
@@ -77,6 +73,7 @@ export default function SignUp() {
         }
 
   const handleSubmit = async (e) => {
+
       e.preventDefault();
       // if button enabled with JS hack
       const v1 = USER_REGEX.test(user);
@@ -86,41 +83,41 @@ export default function SignUp() {
           return;
       }
       try {
-         
-         registerUser();
+
+          if ((await registerUser()).ok) {
+                setSuccess(true);
+        } else {
+            // TODO get the correct message from response body
+                setErrMsg('An error occourred saving this record.');
+        }         
           // TODO: remove console.logs before deployment
-          //console.log(JSON.stringify(response?.data));
-          //console.log(JSON.stringify(response))
-          setSuccess(true);
           //clear state and controlled inputs
           setUser('');
           setPwd('');
           setMatchPwd('');
       } catch (err) {
-          if (!err?.response) {
-              setErrMsg('No Server Response');
-          } else if (err.response?.status === 409) {
-              setErrMsg('Username Taken');
-          } else {
-              setErrMsg('Registration Failed')
-          }
-          errRef.current.focus();
-      }
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else {
+                setErrMsg('Registration Failed')
+            }
+            errRef.current.focus();
+        }
   }
 
   return (
       <>
           {success ? (
-              <section>
-                  <h1>Success!</h1>
+              <section className="form">
+                  <h1>User registered successfully!</h1>
                   <p>
-                      <a href="#">Sign In</a>
+                      <a href="/login">Sign In</a>
                   </p>
               </section>
           ) : (
-              <section className="sign-up">
+              <section className="form">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                  <h1>Register</h1>
+                  <h1>Register User</h1>
                   <form onSubmit={handleSubmit}>
                   <div>
                       <label htmlFor="userEmail">
@@ -219,18 +216,13 @@ export default function SignUp() {
                           Must match the first password input field.
                       </p>
                       </div>
-                      <Button
-                          className='btns'
-                          buttonStyle='btn--primary'
-                          buttonSize='btn--large'
-                          disabled={!validName || !validPwd || !validMatch ? true : false}
-                        > Sign Up </Button>
+                      <button className="btn" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                   </form>
                   <p>
                       Already registered?<br />
                       <span className="line">
                           {/*put router link here*/}
-                          <a href="#">Sign In</a>
+                          <a href="/login">Sign In</a>
                       </span>
                   </p>
               </section>

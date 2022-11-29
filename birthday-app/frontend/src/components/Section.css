@@ -68,5 +68,33 @@
   
     .btn {
       width: 100%;
-    }
+    }   
   }
+
+  .in-progress-container {
+    background: url('birthday-img-6.jpg') center bottom;
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+  }
+
+  .in-progress-container > h1 {
+    color: rgb(21, 88, 133);
+    font-size: 50px;
+    margin-top: -300px;
+    text-align: center;
+  }
+  
+  .in-progress-container > p {
+    margin-top: 8px;
+    color: rgb(21, 88, 133);
+    font-size: 28px;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+  }
+  

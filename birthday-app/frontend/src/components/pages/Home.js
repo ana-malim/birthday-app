@@ -4,14 +4,10 @@ import Cards from '../Cards';
 import Section from '../Section';
 import Footer from '../Footer';
 
-function Home() {
+export default function Home() {
     return (
       <>
         <Section />
-        {/* <Cards /> */}
-        {/* <Footer /> */}
       </>
     );
   }
-  
-export default Home;

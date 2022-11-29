@@ -48,8 +48,7 @@ const birthdaySchema = mongoose.Schema({
     maxlength: [250, "Too many characters!"]
   }
 })
-// TODO add photo fiel
+// TODO add photo file
 // we are exporting our schema for table Products.
 
 module.exports = mongoose.model('Birthday', birthdaySchema);
-//module.exports = birthdaySchema;

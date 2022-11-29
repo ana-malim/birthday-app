@@ -1,53 +1,32 @@
 const db = require('../models/index');
 const Birthday = db.birthday;
 
-
-function getUserId () {
-   // get it from JWT
-}
-
 // TODO for convinience to the user it's easier to ask for age
-// TODO get user id to get things from their db
+// TODO create userId for brithday model to determine what birthday belongs to each user collection and use to display
+// the correct birthday when user is logged in
+// TODO close the database
 
-// find the collection means find the table probably
+// find the collection means find the table
 // TODO logic to get birthdays in a window date
+
 // Logic for the GET request to get all birthdays
 exports.get_all_birthday = async (req, res) => {
    try {
       console.log("inside get all funcion on birthday controller");
-      //var dbo = db.db("mydb");
-      //console.log(dbo.collection("birthday").find());
-      // finding all the product in the table
-      // THIS LINE IS NOT WORKING
       const birthdayResults = await Birthday.find();
-      //   console.log(birthdayResults.length == 0)
-      //   await cursor.forEach(console.dir);
-      //    // To check in the console 
-      //console.log(JSON.stringify(birthdayResults))
-      //console.log(birthdayResults);
-      //res.send("No birthdays")
-      // res.json({
-      //    data: birthdayResults
-      // }).send();
-      //  res.json()
-      console.log("Response from birthday controller");
-      //console.log(res.json({"data": birthdayResults}));
-      // returns to localhost the correct values below with birthday results values, how these values don't make to the request in client
-      return res.json({data: birthdayResults});
+      return res.json({
+         data: birthdayResults
+      });
+
    } catch (err) {
       res.send({
          message: err
       })
    }
-
-   //Birthday.close();
 }
 
 // Logic for the POST request to create a new birthday
 exports.create_birthday = async (req, res) => {
-
-   console.log(`Inside create_birthday function ${JSON.stringify(req.body)}`);
-   // doesnt seem like any body is being sent it's empty that's why has the message it cannot be empty
 
    const {
       firstName,
@@ -67,21 +46,23 @@ exports.create_birthday = async (req, res) => {
       return;
    }
 
-   // check for duplicate usernames in the db
+   //Check for record duplicate
    const duplicate = await Birthday.findOne({
       firstName: firstName,
       lastName: lastName,
       birthdayDay: birthdayDay,
       birthdayMonth: birthdayMonth
    }).exec();
+
    if (duplicate) {
-      res.sendStatus(409).send({
+      res.status(409).send({
          message: "Record already exists."
       });
       return;
    } //Conflict 
 
-   // retrieving data from json body of post request
+   // Create a new birthday document
+   // TODO validate input format on db insert
    const birthday = new Birthday({
       "firstName": firstName,
       "midInitial": midInitial ? midInitial : "",
@@ -90,29 +71,26 @@ exports.create_birthday = async (req, res) => {
       "birthdayMonth": birthdayMonth,
       "birthdayYear": birthdayYear ? birthdayYear : "",
       "details": details ? details : ""
-      // validate input format
    });
 
-   console.log(`New birthday record ${JSON.stringify(birthday)}`);
-   // Save Birthday in the database
+   // Save birthday record in the database
    birthday.save()
-      .then(res => {
+      .then(result => {
          res.status(200).send({
             'success': `New birthday record created!`
-         })
+         });
       })
       .catch(err => {
          res.status(500).send({
             message: err.message || "Some error occurred while adding new birthday record"
          })
       })
-
-   //Birthday.close();
 }
 
 // Logic for the GET request to get all birthdays on today's date
 exports.get_today_birthday = (req, res) => {
-   // TODO if result empty display a message
+
+   // TODO return the correct response when it's empty results
    const today = new Date();
    const month = today.getMonth() + 1;
    const day = today.getDate();
@@ -129,52 +107,27 @@ exports.get_today_birthday = (req, res) => {
          }).send()
       })
       // if product is found then returned
-      // print result only the ones we want
       .catch(err => {
          res.status(500).send({
             message: err.message || "Some error occurred while retrieving records"
          })
       })
-
-   // //res.send("No birthdays")
-   // res.json({
-   //    message: birthdayResults
-   // }).send();
-
-   // birthday.save()
-   // .then(result => {
-   //    res.status(200).send({
-   //       'success': `New birthday record created!`
-   //    })
 }
 
 exports.delete_birthday = async (req, res) => {
 
    const {
       _id
-      // firstName,
-      // lastName,
-      // birthdayDay,
-      // birthdayMonth
    } = req.body;
 
    // needed the await to get the record and be deleted so I needed to add
    // async to the function to add await
-   // now it was deleted
-   const duplicate = await Birthday.findOne({
+   const record = await Birthday.findOne({
       _id: _id
-      // firstName: firstName,
-      // lastName: lastName,
-      // birthdayDay: birthdayDay,
-      // birthdayMonth: birthdayMonth
    });
 
-   //console.log(duplicate.firstName)
-   console.log(duplicate._id)
-
-   //const id = req.params.productId; //checks for productId to delete
    Birthday.deleteOne({
-         _id: duplicate._id
+         _id: record._id
       }) // removes product from table
       .exec()
       .then(res => {
@@ -212,38 +165,7 @@ exports.patch_birthday_details = async (req, res) => {
 
    // TODO find duplicates when editing
    // check for duplicate usernames in the db
-   // const duplicate = await Birthday.findOne({
-   //    firstName: firstName,
-   //    lastName: lastName,
-   //    birthdayDay: birthdayDay,
-   //    birthdayMonth: birthdayMonth
 
-   // }).exec();
-   // if (duplicate) {
-   //    res.sendStatus(409).send({
-   //       message: "Record with those info data already exists."
-   //    });
-   //    return;
-   // } //Conflict 
-
-   // retrieving data from json body of post request
-   const birthday = new Birthday({
-      "firstName": firstName,
-      "midInitial": midInitial ? midInitial : "",
-      "lastName": lastName,
-      "birthdayDay": birthdayDay,
-      "birthdayMonth": birthdayMonth,
-      "birthdayYear": birthdayYear ? birthdayYear : "",
-      "details": details ? details : ""
-      // validate input format
-   });
-
-   //const id = req.params.productId; // get product ID from params
-   // const update = {}
-   // // checks for the value to be updated in item
-   // for (const ops of req.body) {
-   //    update[ops.propName] = ops.value;
-   // }
    Birthday.updateOne({
          _id: _id
       }, {

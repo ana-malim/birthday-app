@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.css';
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
 
 function Footer() {
@@ -10,19 +9,19 @@ function Footer() {
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>About Us</h2>
-            <Link to='/sign-up'>How it works</Link>            
+            <Link to='/information'>How it works</Link>            
           </div>
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>            
+            <Link to='/contact'>Contact</Link>            
           </div>
         </div>
         <div className='footer-link-wrapper'>          
           <div className='footer-link-items'>
             <h2>Social Media</h2>
-            <a href='https://www.instagram.com/namalimpensa/?hl=en'>Instagram <i class='fab fa-instagram'/></a>
-            <a href='https://www.linkedin.com/in/ana-malimpensa'>LinkedIn <i class='fab fa-linkedin' /></a>
-            <a href='https://github.com/ana-malim'>Github <i class="fab fa-github"/></a>
+            <a href='https://www.instagram.com/namalimpensa/?hl=en'>Instagram <i className='fab fa-instagram'/></a>
+            <a href='https://www.linkedin.com/in/ana-malimpensa'>LinkedIn <i className='fab fa-linkedin' /></a>
+            <a href='https://github.com/ana-malim'>Github <i className="fab fa-github"/></a>
           </div>
         </div>
       </div>

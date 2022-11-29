@@ -4,130 +4,33 @@ import CardItem from './CardItem';
 import { Link, useLocation } from 'react-router-dom';
 import img from '../assets/images/Blank-Profile-Picture-1.jpg'
 import { Button } from './Button';
-import axios from "axios";
-
-// import data here
-// const mockData = [];
-// const data = [];
-const mockData = [ {id: 1, firstName: "Ana", midInitial: "P", lastName: "Malimpensa", birthdayDay: 13, birthdayMonth: 9, birthdayYear: 1990, details: "We met in highschool in 2008"},
- {id: 2, firstName: "Paul", midInitial: "J", lastName: "Spadaro", birthdayDay: 8, birthdayMonth: 5, birthdayYear: 1985, details: "Agressive Husband"}];
-
-// const data = new Array(18).fill().map((value, index) => ({ id: mockData.id, firstName: mockData.firstName, midInitial: mockData.midInitial, 
-//                                                               lastName: mockData.lastName, birthdayDay: mockData.birthdayDay, birthdayMonth: mockData.birthdayMonth,
-//birthdayYear: mockData.birthdayYear, details: mockData.details}));
-
-                          
-// TODO  calculate the age with whole birthday
+                       
+// TODO  calculate the age with whole birthday (month+day)
 function calculateAge(birthYear) { 
   const yearNow = new Date().getFullYear();
   const age = yearNow - parseInt(birthYear);
-  //console.log(`Age is: ${age}`);
 
   return age;
 }
 
-// function requestTodayBirthdays() {
-//   var name = document.getElementById("name").value;
-//   var email = document.getElementById("email").value;
-//   var result = document.getElementById("result");
-  
-//   fetch("/jsondata", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ name: name, email: email }),
-//   })
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       result.innerHTML = data.msg;
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// }
-
-// function getBirthdays() {
-
-//   //e.preventDefault();
-
-//   axios.get("http://localhost:4000/api/birthday/all",  { crossdomain: true }).then(response => {
-//    return response.data
-//     // setText(response.data.text);
-//     // setAuthor(response.data.author);
-//    // response.end([data]);
-//   });
-// }
-
-// mockData = getBirthdays();
-
-// TODO maybe make it the birthday cards
 // TODO Reload cards or leave the page when a record is added or deleted
 // text= {`Age: ${calculateAge("1990") ? calculateAge(item.birthdayYear) : "not provided"}`}
-function Cards(props) { //{getBirthdays}
+function Cards() { 
 
 const [data, setData] = useState([]);
-const [endpoint, setEndpoint] = useState('');
 const location = useLocation();
 
-console.log(location)
-// it's woprking now but not getting the data from correct place
- 
-// res => {
-//   function(response) {
-//   console.log(`Is response ok: ${res.ok}`);
-//   if(res.ok) {
-//     console.log(`Response from server: ${res.body
-//     }`);
-//     return res.body; }
-//     //
-//     //return res
-
-function getEndpoint(path) { 
-
-  if (path === '/api/brithday/all') {
-    setEndpoint('all')
-  }
-  else if (path === '/api/brithday/today') {
-    setEndpoint('today')
-  }
-  else {
-    return
-  }
-
-}
-
+//console.log(location)
 
 useEffect(() => {       
 
-    //getEndpoint(location.pathname);
     fetch(`${location.pathname}`).then(
       function(response) {
-      
+        // have a code pattern on returning responses
         return response.json();
-        //
-        //return res
-        // then response => setData(jsonResponse.data.data))
-     
-      // response => setData(response)
+
     }).then(function(data) { setData(data.data); console.log(data.data)})
   }, [])
-
-  //console.log(`Data inside client cards ${data}`);
-
-// function getBirthdays() {
-//   console.log('inside getBirthdays function on section')
-
-//   // it's not setting the state or the data
-  
-//   axios.get("http://localhost:4000/api/birthday/all",  { crossdomain: true }).then(response => {
-//    return response.data;
-//   });
-// }
-
-  //console.log(`Inside cards compoennts ${getBirthdays}`)
 
   return (
     <div className='cards'>

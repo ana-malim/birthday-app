@@ -1,11 +1,7 @@
 import React from 'react';
 import './Button.css';
-import {
-    Link
-} from 'react-router-dom';
 
 const STYLES = ['btn--primary', 'btn--outline'];
-
 const SIZES = ['btn--medium', 'btn--large'];
 
 export const Button = ({
@@ -19,11 +15,9 @@ export const Button = ({
 
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
-    // TODO why sign up here??? should be here search button
-    return ( //<Link to='sign-up' className='btn-mobile'>
+    return ( 
         <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
             {children}
         </button>
-        // </Link>
    )
 }

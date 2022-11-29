@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { Button } from '../Button';
 import '../../App.css';
-import axios from '../../api/axios';
+//import axios from '../../api/axios';
 const LOGIN_URL = '/auth';
 
 export default function SignIn() {
@@ -34,7 +34,8 @@ export default function SignIn() {
     event.preventDefault();
 
     try {
-      const response = await axios.post(LOGIN_URL,
+      //await axios.post(LOGIN_URL,
+      const response = await fetch.post(LOGIN_URL,
           JSON.stringify({ user, pwd }),
           {
               headers: { 'Content-Type': 'application/json' },
@@ -61,8 +62,7 @@ export default function SignIn() {
       errRef.current.focus();
   }
   };
-
-   //<h1 className = 'sign-in' > LIKE & SUBSCRIBE < /h1>; 
+  
   return (
     <>
     {success ? (

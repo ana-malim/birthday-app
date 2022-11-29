@@ -1,7 +1,8 @@
 .cards {
     padding: 12rem;
     background: url('birthday-background.jpg') center center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);    
+    object-fit: contain;
   }
   
   h1 {
@@ -12,12 +13,13 @@
   }
   
   .cards__container {     
-    display: flex;
-    flex-flow: column;
+    display: table;
+    flex-flow: table;
     align-items: center;
-    max-width: 1120px;
+    max-width: 90%;
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto;    
+    object-fit: contain;
   }
   
   .cards__wrapper {
@@ -127,16 +129,23 @@
     .content__blog__container {
       width: 84%;
     }
+    
   }
   
   @media only screen and (min-width: 1024px) {
     .cards__items {
       display: flex;
     }
+    
   }
   
   @media only screen and (max-width: 1024px) {
     .cards__item {
       margin-bottom: 2rem;
+    }
+    .cards__btns .btn {
+      margin: 6px;
+      margin-left: -300px;
+      width: 150px;
     }
 }
